@@ -38,7 +38,7 @@ class Config {
 
 ```
 
-As you can see, the only thing this class does is registering the page blocks en returning in when the class is constructed.
+As you can see, the only thing this class does is registering the page blocks en returning it when the class is constructed.
 
 In `functions.php` initialize the pageblocks class by doing this:
 
@@ -52,12 +52,12 @@ if ( is_admin() ) {
   $config = new Pageblocks\Config(); // 👈 Your local config class
   $templates = array( 'templates/pageblocks.php' ); // 👈  Templates to display the pageblocks form on
   $postTypes = array( 'page' ), // 👈  Post types to display the pageblocks form on
-  new \Pageblocks\Pageblocks( ,  ); // 👈 Note the difference between the first \ (meaning global package) and the second, which is referenced to your local namespace.
+  new \Pageblocks\Pageblocks( $config, $templates, $postTypes ); // 👈 Note the difference between the first \ (meaning global package) and the second, which is referenced to your local namespace.
 }
 ?>
 ```
 
-A pageblock class typically contains two functions: `admin` for displaying in wp-admin and `display` for displaying on the frontend. It looks like this:
+A pageblock class should contain two functions: `admin` for displaying in wp-admin and `display` for displaying on the frontend. It looks like this:
 
 ```php
 <?php
@@ -75,14 +75,13 @@ class TestBlock {
      * $helpers is an Object with some helper function (see a description below)
    */
 
-    // Every admin class should at least open and closed using the helper object, this is done like this:
+    // Every admin class should at least open and close using the helper object, this ensures the right UI get's loaded
     echo $helpers->getOpeningPageBlockElement( $count, 'test-block', $collapsed );
     echo $helpers->getClosingPageBlockElement();
   }
 
-  // The display function has only one paramater; $content. This is an array with the form values.
-  public function display ( $content ) {
-  }
+  // The display function has only one argument; $content. This is an array with the form values.
+  public function display ( $content ) { }
 }
 
 ```
@@ -92,6 +91,7 @@ The helpers paramater contains five functions:
 
 ```php
 <?php
+
 $helpers->getOpeningPageBlockElement( $count, 'test-block', $collapsed );
 $helpers->getClosingPageBlockElement();
 
@@ -105,7 +105,7 @@ $helpers->getFieldName( $count, $name ); // 👈 Important: You should alwasys w
 
 ### Form fields in admin with Cuisine
 
-[Cuisine](http://docs.get-cuisine.cooking/core/) is a very useful utility that simplifies a lot of WordPress backend stuff. The Cuisine Field class makes it really simple to forms and works very nice with the pageblocks system. An example of an admin function inside a pageblock class in combination with Cuisine.
+[Cuisine](http://docs.get-cuisine.cooking/core/) is a very useful utility that simplifies a lot of WordPress backend stuff. The Cuisine Field class makes it really simple to build forms and works very nice with the pageblocks system. An example of an admin function inside a pageblock class in combination with Cuisine:
 
 ```php
 <?php
@@ -155,7 +155,7 @@ class TestBlock {
 ```
 
 ### Displaying on the frontend
-To display on the frontend, you'll just need the `Display` class. It accepts two arguments, `$blocks` which are the pageblocks from your config Class and `$postId` which is the id of the current page. A pageblocks template would look like this:
+To display on the frontend, you'll just need the `Display` class. It accepts two arguments, `$blocks` which are the pageblocks from your `Config` class and `$postId` which is the id of the current page. A pageblocks template would look like this:
 
 ```php
 <?php
