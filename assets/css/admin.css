@@ -1,0 +1,53 @@
+/**
+ * Admin css
+ */
+
+.field-wrapper {
+  margin-bottom: 10px;
+}
+
+.field-wrapper.radio .subfield-wrapper {
+  display: block;
+  margin: 4px 0;
+}
+
+.field-wrapper.radio label {
+  display: inline;
+}
+
+/**
+ * Pane
+ */
+.c-pane--1-3 {
+  width: calc((100% / 3) - .5rem);
+}
+
+.c-pane--2-3 {
+  width: calc(((100% / 3) * 2) - .5rem);
+
+}
+
+.c-pane--1-2 {
+  width: calc(50% - .5rem);
+}
+
+.c-pane--1 {
+  width: 100%;
+}
+
+.u-flex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.c-pane {
+  box-sizing: border-box;
+  padding: 1rem;
+  margin-bottom: .5rem;
+}
+
+.c-pane--border {
+  border: 1px #eee solid;
+  background: white;
+}

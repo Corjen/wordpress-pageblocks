@@ -1,0 +1,98 @@
+/**
+ * Page block header
+ */
+
+.page-block-header {
+  position: relative;
+  min-height: 2rem;
+  border: 1px #eee solid;
+  padding: .5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+}
+
+.page-block-header:hover {
+  cursor: move;
+}
+
+.page-block-header__title {
+  font-weight: bold;
+}
+/**
+ * Utils
+ */
+.page-block-utils {
+  right: 0;
+  width: 18%;
+}
+
+.page-block-utils__delete {
+  color: red;
+  cursor: pointer;
+}
+
+.page-block-utils__collapse {
+  padding: 0 1rem;
+  display: inline-block;
+  cursor: pointer;
+}
+
+/**
+ * Page block
+ */
+.page-block {
+  background: #eee;
+}
+
+.page-block .page-block-utils__collapse .icon {
+  transform: rotate(90deg);
+}
+
+.page-block--collapsed .page-block-utils__collapse .icon {
+  transform: rotate(0);
+}
+
+.page-block--collapsed .page-block__content {
+  max-height: 0;
+  overflow-y: hidden;
+  padding: 0;
+}
+
+/**
+ * Page block content
+ */
+.page-block__content {
+  max-height: auto;
+  padding: .5rem;
+  border: 1px #eee solid;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/**
+ * Container
+ */
+.pageblock-container {
+  padding: 1rem 0;
+}
+
+.pageblock-container-header {
+  min-height: 2.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.pageblock-container-header select{
+  margin-left: .5rem;
+}
+
+/**
+ * Sortable placeholder
+ */
+.sortable-placeholder {
+  background: #eee;
+  border: 1px #999 dashed;
+  min-height: 2.5rem;
+}
