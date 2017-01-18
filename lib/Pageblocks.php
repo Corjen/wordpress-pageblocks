@@ -17,7 +17,7 @@ class Pageblocks {
 
   public static $helpers;
 
-  public function __construct ( $blocks = array(), $templates = array( 'templates/pageblocks.php' ), $postTypes = array( 'page' )  ) {
+  public function __construct ( $blocks = array(), $postTypes = array( 'page' ), $templates = array() ) {
     self::$blocks = $blocks;
 
     if ( is_admin() ) {
@@ -31,16 +31,18 @@ class Pageblocks {
         return;
       }
 
-      // Return current template is not in accepted templates
-      $template_file = get_post_meta( $_GET['post'], '_wp_page_template', TRUE );
-      if ( ! in_array( $template_file, $templates ) ) {
-        return;
-      }
-
       // Else, define metabox
       Metabox::make( 'Pageblocks', $postTypes, array(
         'priority' => 'high'
       ))->set('\\Pageblocks\Pageblocks::metabox');
+
+      // Return if current template is not in accepted templates
+      if ( ! empty( $templates ) ) {
+        $template_file = get_post_meta( $_GET['post'], '_wp_page_template', TRUE );
+        if ( ! in_array( $template_file, $templates ) ) {
+          return;
+        }
+      }
 
       // Enqueue assets
       add_action( 'admin_enqueue_scripts', array( $this, 'enqueueAssets' ) );
