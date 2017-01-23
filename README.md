@@ -13,9 +13,11 @@ namespace MyProject\Pageblocks;
 
 class Config {
 
+  var $blocks;
+
   public function __construct() {
 
-    $blocks = array(
+    $this->blocks = array(
       array(
         'test-block' => array(
           'class' => '\MyProject\Pageblocks\TestBlock', // 👈 Corresponding to your namespace and class name
@@ -30,8 +32,10 @@ class Config {
       )
     );
 
-    return $blocks;
+  }
 
+  public function getConfig() {
+    return $this->blocks;
   }
 
 }
@@ -50,9 +54,9 @@ namespace MyProject;
 
 if ( is_admin() ) {
   $config = new Pageblocks\Config(); // 👈 Your local config class
-  $templates = array( 'templates/pageblocks.php' ); // 👈  Templates to display the pageblocks form on
   $postTypes = array( 'page' ), // 👈  Post types to display the pageblocks form on
-  new \Pageblocks\Pageblocks( $config, $templates, $postTypes ); // 👈 Note the difference between the first \ (meaning global package) and the second, which is referenced to your local namespace.
+  $templates = array( 'templates/pageblocks.php' ); // 👈  Templates to display the pageblocks form on (optional!)
+  new \Pageblocks\Pageblocks( $config->getConfig(), $templates, $postTypes ); // 👈 Note the difference between the first \ (meaning global package) and the second, which is referenced to your local namespace.
 }
 ?>
 ```
