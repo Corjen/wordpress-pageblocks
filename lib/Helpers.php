@@ -38,10 +38,11 @@ class Helpers {
   }
 
 
-  public function getOpeningPostboxElement( $title = '' ) {
+  public function getOpeningPostboxElement( $title = '', $closed = false ) {
+    $class = $closed ? 'closed' : '';
     return '
-      <div class="postbox closed" id="boxid">
-        <button type="button" class="handlediv button-link" aria-expanded="true"><span class="screen-reader-text">Toggle panel: ' . $title . '</span><span class="toggle-indicator" aria-hidden="true"></span></button>
+      <div class="postbox ' . $class . '" id="boxid">
+        <button type="button" class="handlediv button-link" aria-expanded="true"><span class="screen-reader-text">Toggle panel: ' . $title . '</span><span class="toggle-indicator" aria-hidden="false"></span></button>
         <h3>' . $title . '</h3>
         <div class="inside">';
    }

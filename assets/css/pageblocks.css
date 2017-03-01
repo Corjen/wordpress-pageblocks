@@ -69,6 +69,12 @@
   border: 1px #eee solid;
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.page-block__content .postbox {
+  width: calc(50% - .5rem);
+  height: 0%;
 }
 
 /**

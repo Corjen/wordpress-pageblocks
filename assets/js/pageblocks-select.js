@@ -22,6 +22,7 @@ jQuery(document).ready(function ($) {
         }
       }).success(function (response) {
         container.append(response)
+        cuisineInitMediaFields()
       }).error(function (error) {
         container.append(error.responseText)
         console.error(error)
