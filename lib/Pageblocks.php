@@ -153,8 +153,6 @@ class Pageblocks {
      */
     if ( isset( $_POST['pageblocks'] ) ) {
       update_post_meta( $post_id, 'pageblocks', $_POST['pageblocks'] );
-    } else {
-      delete_post_meta( $post_id, 'pageblocks' );
     }
   }
 }
