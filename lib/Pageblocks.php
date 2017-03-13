@@ -151,9 +151,12 @@ class Pageblocks {
     /**
      * TODO: Nonce validation
      */
-    if ( isset( $_POST['pageblocks'] ) ) {
-      update_post_meta( $post_id, 'pageblocks', $_POST['pageblocks'] );
-    }
+     global $pagenow;
+     if ( isset( $_POST['pageblocks'] ) ) {
+       update_post_meta( $post_id, 'pageblocks', $_POST['pageblocks'] );
+     } if ( ! isset( $_POST['pageblocks'] ) && $pagenow === 'post.php' ) {
+       delete_post_meta( $post_id, 'pageblocks' );
+     }
   }
 }
 
