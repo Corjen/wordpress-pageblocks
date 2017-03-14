@@ -10,19 +10,21 @@ class Helpers {
     $this->blocks = $blocks;
   }
 
-  public function getOpeningPageBlockElement( $count = 0, $type='', $collapsed ) {
+  public function getOpeningPageBlockElement( $count = 0, $type='', $collapsed, $title = '' ) {
     $uniqid = uniqid();
     $collapsedClass = $collapsed ? 'page-block--collapsed' : '';
     $html = '<div id="' . $uniqid . '" class="page-block ' . $collapsedClass . '">';
-    $html .= $this->_getPageBlockHeader( $count, $type, $uniqid );
+    $html .= $this->_getPageBlockHeader( $count, $type, $uniqid, $title );
 
     return $html;
   }
 
-  private function _getPageBlockHeader( $count, $type, $uniqid ) {
-
+  private function _getPageBlockHeader( $count, $type, $uniqid, $title ) {
+    if ( ! empty( $title ) ) {
+      $title = '- ' . $title;
+    }
     $html = '<header class="page-block-header js-toggle-pageblock-collapse" data-target="#' . $uniqid . '">' .
-     '<div class="page-block-header__title">' . $this->blocks[$type]['title'] . '</div>' .
+     '<div class="page-block-header__title"><b>' . $this->blocks[$type]['title'] . '</b> ' . $title . '</div>' .
      '<div class="page-block-utils u-flex">' .
         '<a class="page-block-utils__delete js-delete-pageblock" data-target="#' . $uniqid . '">verwijderen</a>' .
         '<a class="page-block-utils__collapse" data-target="#' . $uniqid . '"><span class="dashicons dashicons-arrow-right icon"></span></a>' .
