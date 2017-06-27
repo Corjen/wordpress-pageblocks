@@ -60,6 +60,7 @@ class Pageblocks {
   public function enqueueAssets () {
     global $pagenow;
     if ( $pagenow === 'post.php' ) {
+      wp_enqueue_editor();
       wp_enqueue_media();
       wp_enqueue_script( 'pageblocks-collapse', PB_PLUGIN_URL . '/assets/js/pageblocks-collapse.js' );
       wp_enqueue_script( 'pageblocks-select', PB_PLUGIN_URL . '/assets/js/pageblocks-select.js' );

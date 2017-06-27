@@ -2,7 +2,7 @@
  * Watch page blocks select
  */
 
-/* global jQuery, ajaxurl */
+/* global jQuery, ajaxurl, cuisineInitMediaFields, wp */
 jQuery(document).ready(function ($) {
   var container = $('.js-pageblock-container')
 
@@ -20,13 +20,18 @@ jQuery(document).ready(function ($) {
           type: val,
           count: count
         }
-      }).success(function (response) {
-        container.append(response)
-        cuisineInitMediaFields()
-      }).error(function (error) {
-        container.append(error.responseText)
-        console.error(error)
       })
+        .success(function (response) {
+          container.append(response)
+          cuisineInitMediaFields()
+          container.find('.js-editor').each(function (i, editor) {
+            wp.editor.initialize(editor.id)
+          })
+        })
+        .error(function (error) {
+          container.append(error.responseText)
+          console.error(error)
+        })
     }
   })
 })
