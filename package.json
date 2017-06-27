@@ -1,0 +1,14 @@
+{
+  "name": "wordpress-pageblocks",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Corjen/wordpress-pageblocks.git",
+  "author": "Corjen Moll <corjen@me.com>",
+  "license": "MIT",
+  "scripts": {
+    "release": "standard-version && git push --follow-tags && git push && git push --tags"
+  },
+  "devDependencies": {
+    "standard-version": "^4.2.0"
+  }
+}
