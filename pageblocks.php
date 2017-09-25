@@ -2,7 +2,7 @@
 /*
 Plugin Name: Pageblocks
 Description: Add custom pageblocks to WordPress
-Version: 0.1
+Version: 1.1.0
 Author: Corjen Molll
 */
 
