@@ -10,21 +10,24 @@ class Helpers {
     $this->blocks = $blocks;
   }
 
-  public function getOpeningPageBlockElement( $count = 0, $type='', $collapsed, $title = '' ) {
+  public function getOpeningPageBlockElement( $count = 0, $type = '', $collapsed, $title = '' ) {
     $uniqid = uniqid();
     $collapsedClass = $collapsed ? 'page-block--collapsed' : '';
     $html = '<div id="' . $uniqid . '" class="page-block ' . $collapsedClass . '">';
     $html .= $this->_getPageBlockHeader( $count, $type, $uniqid, $title );
-
     return $html;
   }
 
   private function _getPageBlockHeader( $count, $type, $uniqid, $title ) {
+    $thumbnail = isset( $this->blocks[$type]['thumbnail'] ) ? $this->blocks[$type]['thumbnail'] : '';
     if ( ! empty( $title ) ) {
       $title = '- ' . $title;
     }
     $html = '<header class="page-block-header js-toggle-pageblock-collapse" data-target="#' . $uniqid . '">' .
+     '<div class="u-flex u-flex-v-center">' .
+     '<img class="page-block-header__thumbnail" src="' . $thumbnail . '"/>' .
      '<div class="page-block-header__title"><b>' . $this->blocks[$type]['title'] . '</b> ' . $title . '</div>' .
+     '</div>' .
      '<div class="page-block-utils u-flex">' .
         '<a class="page-block-utils__delete js-delete-pageblock" data-target="#' . $uniqid . '">verwijderen</a>' .
         '<a class="page-block-utils__collapse" data-target="#' . $uniqid . '"><span class="dashicons dashicons-arrow-right icon"></span></a>' .

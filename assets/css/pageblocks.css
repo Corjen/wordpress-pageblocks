@@ -6,7 +6,7 @@
   position: relative;
   min-height: 2rem;
   border: 1px #eee solid;
-  padding: .5rem;
+  padding: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -18,7 +18,15 @@
 }
 
 .page-block-header__title {
+  margin-left: 1rem;
 }
+
+.page-block-header__thumbnail {
+  width: 150px;
+  height: 75px;
+  object-fit: cover;
+}
+
 /**
  * Utils
  */
@@ -64,7 +72,7 @@
  */
 .page-block__content {
   max-height: auto;
-  padding: .5rem;
+  padding: 0.5rem;
   border: 1px #eee solid;
   display: flex;
   flex-wrap: wrap;
@@ -72,7 +80,7 @@
 }
 
 .page-block__content .postbox {
-  width: calc(50% - .5rem);
+  width: calc(50% - 0.5rem);
   height: 0%;
 }
 
@@ -89,8 +97,8 @@
   align-items: center;
 }
 
-.pageblock-container-header select{
-  margin-left: .5rem;
+.pageblock-container-header select {
+  margin-left: 0.5rem;
 }
 
 /**
