@@ -3,10 +3,10 @@
  */
 
 /* global jQuery, ajaxurl, cuisineInitMediaFields, wp */
-jQuery(document).ready(function ($) {
+jQuery(document).ready(function($) {
   var container = $('.js-pageblock-container')
 
-  $(document).on('change', '.js-select-pageblock', function () {
+  $(document).on('change', '.js-select-pageblock', function() {
     var val = $(this).val()
     var count = $('.page-block').length
 
@@ -21,14 +21,14 @@ jQuery(document).ready(function ($) {
           count: count
         }
       })
-        .success(function (response) {
+        .success(function(response) {
           container.append(response)
           cuisineInitMediaFields()
-          container.find('.js-editor').each(function (i, editor) {
+          container.find('.js-editor').each(function(i, editor) {
             wp.editor.initialize(editor.id)
           })
         })
-        .error(function (error) {
+        .error(function(error) {
           container.append(error.responseText)
           console.error(error)
         })

@@ -20,11 +20,9 @@ class Helpers {
 
   private function _getPageBlockHeader( $count, $type, $uniqid, $title ) {
     $thumbnail = isset( $this->blocks[$type]['thumbnail'] ) ? $this->blocks[$type]['thumbnail'] : '';
-    if ( ! empty( $title ) ) {
-      $title = '- ' . $title;
-    }
+
     $html = '<header class="page-block-header js-toggle-pageblock-collapse" data-target="#' . $uniqid . '">' .
-     '<div class="u-flex u-flex-v-center">' .
+     '<div class="page-block-header-content u-flex u-flex-v-center">' .
      '<img class="page-block-header__thumbnail" src="' . $thumbnail . '"/>' .
      '<div class="page-block-header__title"><b>' . $this->blocks[$type]['title'] . '</b> ' . $title . '</div>' .
      '</div>' .
