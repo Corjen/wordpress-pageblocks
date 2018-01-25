@@ -15,6 +15,8 @@
 
 .page-block-header-content {
   width: calc(100% - 150px);
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .page-block-header:hover {
@@ -30,7 +32,7 @@
 .page-block-header__title b {
   display: block;
   font-size: 1rem;
-  margin-bottom: .25rem;
+  margin-bottom: 0.25rem;
 }
 
 .page-block-header__thumbnail {
@@ -43,13 +45,12 @@
  * Utils
  */
 .page-block-utils {
-  right: 0;
-  width: 18%;
+  width: 140px;
 }
 
 .page-block-utils__delete {
-  color: red;
   cursor: pointer;
+  color: red;
 }
 
 .page-block-utils__collapse {

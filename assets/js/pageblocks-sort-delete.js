@@ -4,13 +4,13 @@
 
 /* global jQuery */
 
-jQuery(document).ready(function ($) {
+jQuery(document).ready(function($) {
   var pageblockContainer = $('.js-pageblock-container')
 
   /**
    * Delete a page block
    */
-  $(document).on('click', '.js-delete-pageblock', function () {
+  $(document).on('click', '.js-delete-pageblock', function() {
     var target = $(this).data('target')
     var confirm = window.confirm('Are you sure you want to delete this block?')
     if (confirm) {
@@ -24,23 +24,33 @@ jQuery(document).ready(function ($) {
     handle: '.page-block-header',
     helper: 'clone',
     placeholder: 'sortable-placeholder',
-    stop: function (event, ui) {
+    stop: function(event, ui) {
       updateIndexes()
+      reInitEditors()
     }
   })
 
-  function updateIndexes () {
+  function updateIndexes() {
     var idList = pageblockContainer.sortable('toArray')
-    $.each(idList, function (index, id) {
+    $.each(idList, function(index, id) {
       var self = $('#' + id)
       // Find children
       var input = self.find('input, textarea, select')
       // Loop inputs and change index
-      input.each(function (i, el) {
+      input.each(function(i, el) {
         var oldName = $(this).attr('name')
         if (oldName !== undefined) {
           $(this).attr('name', oldName.replace(/\[(.+?)\]/, '[' + index + ']'))
         }
+      })
+    })
+  }
+
+  function reInitEditors() {
+    pageblockContainer.find('.js-editor').each(function(i, editor) {
+      wp.editor.remove(editor.id)
+      wp.editor.initialize(editor.id, {
+        tinymce: true
       })
     })
   }
